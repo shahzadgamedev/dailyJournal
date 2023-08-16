@@ -11,12 +11,30 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
+app.use(express.static( __dirname + "/public"));
 
 
 app.get("/", (req, res) => {
-    
+    res.render("home", {content: homeStartingContent});
 });
+
+
+app.get("/contact", (req, res) => {
+    res.render("contact", {content: contactContent});
+});
+
+
+app.get("/about", (req, res) => {
+    res.render("about", {content: aboutContent});
+});
+
+
+app.get("/compose", (req, res) => {
+    res.render("compose");
+});
+
+
+
 
 
 // This route will handle all the requests that are 
