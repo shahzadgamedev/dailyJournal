@@ -33,3 +33,16 @@
 	font-size: 12px;
   color: #fff;
 }
+.postsContent {
+    width: 50%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.links {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
+
+.links:hover {
+    color: black; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}

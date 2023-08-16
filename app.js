@@ -14,8 +14,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static( __dirname + "/public"));
 
 
+var posts = [];
+
 app.get("/", (req, res) => {
-    res.render("home", {content: homeStartingContent});
+    res.render("home", {content: homeStartingContent, posts: posts});
 });
 
 
@@ -32,6 +34,27 @@ app.get("/about", (req, res) => {
 app.get("/compose", (req, res) => {
     res.render("compose");
 });
+
+app.get("/post/:postName", (req, res) => {
+    var requestedTitle = req.params.postName;
+    posts.forEach((post) => {
+        if(post.title === requestedTitle){
+            res.render("post", {postTitle: post.title, postBody: post.body});
+        }
+    });
+});
+
+app.post("/post" , (req, res) => {
+    var postTitle = req.body.postTitle;
+    var postBody = req.body.postBody;  
+    const post = { title: postTitle, body: postBody };
+    posts.push(post);
+    res.redirect("/");
+   
+});
+
+
+
 
 
 
